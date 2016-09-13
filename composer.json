@@ -1,0 +1,25 @@
+{
+  "name": "dywee/faq-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony3 bundle for easy management of FAQ section",
+  "keywords": ["faq"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Olivier Delbruyère",
+      "email": "olivier.delbruyere@hotmail.com",
+      "homepage": "http://dywee.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "dywee/core-bundle": "dev-master",
+    "gedmo/doctrine-extensions": "^2.4",
+  },
+  "autoload": {
+    "psr-4": {
+      "Dywee\\FaqBundle\\": ""
+    }
+  }
+}

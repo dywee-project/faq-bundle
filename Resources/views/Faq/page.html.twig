@@ -1,0 +1,33 @@
+{# Dywee\FaqBundle\Resources\View\Faq\list.html.twig #}
+
+{%  extends "DyweeFaqBundle::layout.html.twig" %}
+
+{% block bodyContent %}
+    {% if page is defined and page is not null %}
+        {#{{ page.content|raw }}#}
+    {% endif %}
+
+    {% set idFaq = 0 %}
+    {% for faqCategory in faqCategoryList %}
+        {% set idCat = 'cat' ~ loop.index %}
+        <h2>{{ faqCategory.name }}</h2>
+
+        <div class="panel-group" id="{{ idCat }}">
+        {% for faqItem in faqCategory.faqItems %}
+            {% set idFaq = idFaq + 1 %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#{{ idCat }}" href="#{{ idFaq }}">{{ faqItem.question }}</a>
+                    </h4>
+                </div>
+                <div id="{{ idFaq }}" class="panel-collapse collapse">
+                    <div class="panel-body">{{ faqItem.answer|raw }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

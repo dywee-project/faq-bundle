@@ -1,0 +1,95 @@
+{# Dywee\OrderBundle\Resources\View\Admin\index.html.twig #}
+
+{% extends 'DyweeFaqBundle::admin.html.twig' %}
+
+{% block body %}
+    {% if faqCategories is defined and faqCategories is not empty %}
+        <div class="col-md-3 pull-right">
+            <p><a href="{{ path('dywee_faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nouveau regroupement</a></p>
+        </div>
+    {% endif %}
+    <div class="title-heading">
+        <h1 class="text-center"></h1>
+    </div>
+    {% if faqCategories is defined and faqCategories is not empty %}
+        {% for row in faqCategories|batch(3) %}
+            <div class="row">
+                {% for faqCategory in row %}
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">{{ faqCategory.name }}</h2>
+                            </div>
+                                {% if faqCategory.faqItems is not empty %}
+                                    <table class="table">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Question</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        {% for faqItem in faqCategory.faqItems %}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+                                                <td>{{ faqItem.question }}</td>
+                                                <td><a href="{{ path('dywee_faq_item_update', {id: faqItem.id}) }}"><i class="fa fa-pencil"></i> </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    <div class="panel-body">
+                                        <p>Aucune question dans cette catégorie</p>
+                                        <p><a href="{{ path('dywee_faq_item_add', {idCategory: faqCategory.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une question dans cette catégorie</a></p>
+                                    </div>
+                                {% endif %}
+
+                            {% if faqCategory.faqItems is not empty %}
+                                <div class="panel-footer">
+                                    <a href="{{ path('dywee_faq_item_add', {idCategory: faqCategory.id}) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter une nouvelle question</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="row">
+            <div class="col-md-6">
+                <p>Vous n'avez pas encore créé de regroupement de questions</p>
+                <p><a href="{{ path('dywee_faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Créer un regroupement</a></p>
+            </div>
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><i class="fa fa-question"></i> Qu'est-ce qu'un regroupement de questions</h3>
+                        <div class="box-tools pull-right">
+                            <!-- Buttons, labels, and many other things can be placed here! -->
+                            <!-- Here is a label for example -->
+                            <span class="label label-primary">Aide</span>
+                        </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <p>Le regroupement de questions vous permet regrouper plusieurs questions dans une même catégorie</p>
+                        <p>Par exemple, les questions:
+                        <ul>
+                            <li>Quels sont les délais de livraison?</li>
+                            <li>Puis-je me faire livrer partout dans le monde?</li>
+                        </ul>
+                        pourraient appartenir à une catégorie "<b>Livraison</b>"</p>
+                        <p>Tandis que les questions comme:
+                        <ul>
+                            <li>Comment passer commande?</li>
+                            <li>Est-il nécessaire d'avoir un compte pour commander?</li>
+                        </ul>
+                        feraient partie d'une catégorie "<b>Commander</b>"</p>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <a href="{{ path('dywee_faq_category_add') }}">Créer un regroupement de questions</a>
+                    </div><!-- box-footer -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock %}

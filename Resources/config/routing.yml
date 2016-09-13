@@ -1,0 +1,19 @@
+dywee_faq_homepage:
+    path:     /admin6833/faq
+    defaults: { _controller: DyweeFaqBundle:Faq:homepage }
+
+dywee_faq_category_add:
+    path:     /admin6833/faq/category/add
+    defaults: { _controller: DyweeFaqBundle:FaqCategory:add }
+
+dywee_faq_item_add:
+    path:     /admin6833/faq/item/add/{idCategory}
+    defaults: { _controller: DyweeFaqBundle:FaqItem:add }
+    requirements:
+        idCategory: \d*
+
+dywee_faq_item_update:
+    path:     /admin6833/faq/item/update/{id}
+    defaults: { _controller: DyweeFaqBundle:FaqItem:update }
+    requirements:
+        id: \d*
