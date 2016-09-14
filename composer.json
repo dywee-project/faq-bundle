@@ -14,8 +14,7 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "dywee/core-bundle": "dev-master",
-    "gedmo/doctrine-extensions": "^2.4",
+    "dywee/core-bundle": "dev-master"
   },
   "autoload": {
     "psr-4": {
