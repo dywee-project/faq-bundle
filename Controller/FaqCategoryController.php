@@ -3,6 +3,7 @@
 namespace Dywee\FaqBundle\Controller;
 
 use Dywee\CoreBundle\Controller\ParentController;
+use Dywee\FaqBundle\Entity\FaqCategory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,13 +22,13 @@ class FaqCategoryController extends ParentController
      */
     public function myTableAction($parameters = null)
     {
-        return parent::tableAction($parameters);
+        return $this->redirectToRoute('faq_dashboard');
     }
 
     /**
      * @Route(name="faq_category_view", path="admin/faq/category/{id}")
      */
-    public function myViewAction($object)
+    public function myViewAction(FaqCategory $object)
     {
         return parent::viewAction($object);
     }
@@ -35,7 +36,7 @@ class FaqCategoryController extends ParentController
     /**
      * @Route(name="faq_category_update", path="admin/faq/category/{id}/edit")
      */
-    public function myUpdateAction($object, Request $request)
+    public function myUpdateAction(FaqCategory $object, Request $request)
     {
         return parent::updateAction($object, $request);
     }
@@ -43,7 +44,7 @@ class FaqCategoryController extends ParentController
     /**
      * @Route(name="faq_category_delete", path="admin/faq/category/{id}/delete")
      */
-    public function myDeleteAction($object, Request $request)
+    public function myDeleteAction(FaqCategory $object, Request $request)
     {
         return parent::deleteAction($object, $request);
     }

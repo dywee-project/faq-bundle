@@ -42,10 +42,10 @@ class FaqCategory
      *
      * @ORM\Column(name="position", type="smallint")
      */
-    private $position;
+    private $position = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="FaqItem", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="FaqItem", mappedBy="faqCategory")
      */
     private $faqItems;
 
@@ -141,7 +141,7 @@ class FaqCategory
     public function addFaqItem(FaqItem $faqItem)
     {
         $this->faqItems[] = $faqItem;
-        $faqItem->setCategory($this);
+        $faqItem->setFaqCategory($this);
 
         return $this;
     }

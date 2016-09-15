@@ -18,8 +18,7 @@ class FaqCategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('isVisible',  CheckboxType::class, array('required' => false))
-            ->add('position',   NumberType::class,   array('required' => false))
+            ->add('isVisible',  CheckboxType::class, array('required' => false, 'label' => 'faq.form.isVisible'))
         ;
     }
     

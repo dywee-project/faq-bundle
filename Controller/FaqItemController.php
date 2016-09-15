@@ -3,25 +3,27 @@
 namespace Dywee\FaqBundle\Controller;
 
 use Dywee\CoreBundle\Controller\ParentController;
+use Dywee\FaqBundle\Entity\FaqCategory;
+use Dywee\FaqBundle\Entity\FaqItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FaqItemController extends ParentController
 {
     /**
-     * @Route(name="faq_item_add", path="admin/faq/item/add")
+     * @Route(name="faq_item_add", path="admin/faq/item/add/{id}")
      */
-    public function myAddAction(Request $request)
+    public function myAddAction($id, Request $request)
     {
-        return parent::addAction($request);
+        return parent::addFromParentAction($id, $request);
     }
 
     /**
      * @Route(name="faq_item_table", path="admin/faq/item")
      */
-    public function myTableAction($parameters = null)
+    public function myTableAction()
     {
-        return parent::tableAction($parameters);
+        return $this->redirectToRoute('faq_dashboard');
     }
 
     /**
@@ -35,7 +37,7 @@ class FaqItemController extends ParentController
     /**
      * @Route(name="faq_item_update", path="admin/faq/item/{id}/edit")
      */
-    public function myUpdateAction($object, Request $request)
+    public function myUpdateAction(FaqItem $object, Request $request)
     {
         return parent::updateAction($object, $request);
     }
@@ -43,7 +45,7 @@ class FaqItemController extends ParentController
     /**
      * @Route(name="faq_item_delete", path="admin/faq/item/{id}/delete")
      */
-    public function myDeleteAction($object, Request $request)
+    public function myDeleteAction(FaqItem $object, Request $request)
     {
         return parent::deleteAction($object, $request);
     }

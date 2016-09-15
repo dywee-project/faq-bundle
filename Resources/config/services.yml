@@ -1,4 +1,11 @@
 services:
+
+    dywee_faq.position_handler:
+            class: Dywee\OrderBundle\Service\InvoiceReferenceManager
+            arguments: [ ]
+            tags:
+                - { name: doctrine.event_listener, event: prePersist }
+
     ###########################
     #                         #
     #         SIDEBAR         #

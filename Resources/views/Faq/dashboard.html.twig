@@ -5,12 +5,16 @@
 {% block body %}
     {% if faqCategories is defined and faqCategories is not empty %}
         <div class="col-md-3 pull-right">
-            <p><a href="{{ path('dywee_faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nouveau regroupement</a></p>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="panel-title">{{ 'add'|trans }}</p>
+                </div>
+                <div class="panel-body">
+                    <p><a href="{{ path('faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> {{ 'faq.category.addLabel'|trans }}</a></p>
+                </div>
+            </div>
         </div>
     {% endif %}
-    <div class="title-heading">
-        <h1 class="text-center"></h1>
-    </div>
     {% if faqCategories is defined and faqCategories is not empty %}
         {% for row in faqCategories|batch(3) %}
             <div class="row">
@@ -18,33 +22,50 @@
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
+                                <div class="pull-right">
+                                    <a href="{{ path('faq_category_update', {id: faqCategory.id}) }}" class="btn btn-default btn-xs" style="margin-top: -5px"><i class="fa fa-pencil"></i> </a>
+                                    <a href="{{ path('faq_category_update', {id: faqCategory.id}) }}" class="btn btn-danger btn-xs" style="margin-top: -5px"><i class="fa fa-trash"></i> </a>
+                                </div>
                                 <h2 class="panel-title">{{ faqCategory.name }}</h2>
                             </div>
                                 {% if faqCategory.faqItems is not empty %}
                                     <table class="table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Question</th>
-                                            <th>Actions</th>
+                                            <th>{{ 'faq.question'|trans }}</th>
+                                            <th>{{ 'faq.active'|trans }}</th>
+                                            <th>{{ 'actions'|trans }}</th>
                                         </tr>
                                         {% for faqItem in faqCategory.faqItems %}
                                             <tr>
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ faqItem.question }}</td>
-                                                <td><a href="{{ path('dywee_faq_item_update', {id: faqItem.id}) }}"><i class="fa fa-pencil"></i> </a></td>
+                                                <td>
+                                                    {% if faqItem.isVisible == true %}
+                                                        <i class="fa fa-check"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-remove"></i>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-xs">
+                                                        <a href="{{ path('faq_item_update', {id: faqItem.id}) }}" class="btn btn-default"><i class="fa fa-pencil"></i> </a>
+                                                    </div>
+                                                    <a href="{{ path('faq_item_delete', {id: faqItem.id}) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> </a>
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     </table>
                                 {% else %}
                                     <div class="panel-body">
                                         <p>Aucune question dans cette catégorie</p>
-                                        <p><a href="{{ path('dywee_faq_item_add', {idCategory: faqCategory.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une question dans cette catégorie</a></p>
+                                        <p><a href="{{ path('faq_item_add', {id: faqCategory.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> {{ 'faq.item.addInCategory'|trans }}</a></p>
                                     </div>
                                 {% endif %}
 
                             {% if faqCategory.faqItems is not empty %}
                                 <div class="panel-footer">
-                                    <a href="{{ path('dywee_faq_item_add', {idCategory: faqCategory.id}) }}" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter une nouvelle question</a>
+                                    <a href="{{ path('faq_item_add', {id: faqCategory.id}) }}" class="btn btn-default"><i class="fa fa-plus"></i> {{ 'faq.item.add'|trans }}</a>
                                 </div>
                             {% endif %}
                         </div>
@@ -56,8 +77,8 @@
     {% else %}
         <div class="row">
             <div class="col-md-6">
-                <p>Vous n'avez pas encore créé de regroupement de questions</p>
-                <p><a href="{{ path('dywee_faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Créer un regroupement</a></p>
+                <p>{{ 'faq.category.empty'|trans }}</p>
+                <p><a href="{{ path('faq_category_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> {{ 'faq.category.addLabel'|trans }}</a></p>
             </div>
             <div class="col-md-6">
                 <div class="box">
@@ -85,7 +106,7 @@
                         feraient partie d'une catégorie "<b>Commander</b>"</p>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
-                        <a href="{{ path('dywee_faq_category_add') }}">Créer un regroupement de questions</a>
+                        <a href="{{ path('faq_category_add') }}">{{ 'faq.category.addLabel'|trans }}</a>
                     </div><!-- box-footer -->
                 </div><!-- /.box -->
             </div>

@@ -1,0 +1,21 @@
+faq:
+    category:
+        addLabel: Créer un regroupement de questions
+        empty: Pas encore de regroupement de questions créé
+        new: Nouveau regroupement de questions
+        edit: Edition d'un regroupement de questions
+
+    item:
+        addInCategory: Ajouter une question dans cette catégorie
+        add: Ajouter une nouvelle question
+        new: Nouvelle question
+        edit: Edition d'une question
+
+    form:
+        question: Question
+        answer: Réponse
+        isVisible: Visible sur le site
+
+    sidebar:
+        label: FAQ:
+        dashboard: Gérer les FAQ

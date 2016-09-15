@@ -8,13 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class FaqController extends Controller
 {
     /**
-     * @Route(name="faq_homepage", path="admin/faq")
+     * @Route(name="faq_dashboard", path="admin/faq")
      */
-    public function homepageAction()
+    public function DashboardAction()
     {
         $fcs = $this->getDoctrine()->getRepository('DyweeFaqBundle:FaqCategory')->findBy(array(), array('position' => 'asc'));
 
-        return $this->render('DyweeFaqBundle:Admin:index.html.twig',
+        return $this->render('DyweeFaqBundle:Faq:dashboard.html.twig',
             array(
                 'faqCategories' => $fcs
             )

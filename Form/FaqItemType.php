@@ -6,6 +6,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,10 +19,9 @@ class FaqItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('question')
-            ->add('answer', CKEditorType::class, array('attr' => array('rows' => 40)))
-            ->add('isVisible',  CheckboxType::class, array('required' => false))
-            ->add('position',   NumberType::class,   array('required' => false))
+            ->add('question', TextType::class, array('label' => 'faq.form.question'))
+            ->add('answer', CKEditorType::class, array('attr' => array('rows' => 10), 'label' => 'faq.form.answer'))
+            ->add('isVisible',  CheckboxType::class, array('required' => false, 'label' => 'faq.form.isVisible'))
         ;
     }
     

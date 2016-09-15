@@ -50,7 +50,7 @@ class FaqItem
     /**
      * @ORM\ManyToOne(targetEntity="FaqCategory", inversedBy="faqItems")
      */
-    private $category;
+    private $faqCategory;
 
     /**
      * @ORM\Column(name="position", type="smallint", nullable=true)
@@ -63,6 +63,7 @@ class FaqItem
      * this is not a mapped field of entity metadata, just a simple property
      */
     private $locale;
+
     
     public function setTranslatableLocale($locale)
     {
@@ -152,27 +153,22 @@ class FaqItem
     }
 
     /**
-     * Set category
+     * alias for setFaqCategory
      *
      * @param FaqCategory $category
-     *
      * @return FaqItem
      */
     public function setCategory(FaqCategory $category = null)
     {
-        $this->category = $category;
-
-        return $this;
+        return $this->setFaqCategory($category);
     }
 
     /**
-     * Get category
-     *
-     * @return \Dywee\FaqBundle\Entity\FaqCategory
+     * alias for getFaqCategory
      */
     public function getCategory()
     {
-        return $this->category;
+        return $this->getFaqCategory();
     }
 
     /**
@@ -204,5 +200,34 @@ class FaqItem
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+    }
+
+    public function getParentEntity()
+    {
+        return $this->getCategory() ?? FaqCategory::class;
+    }
+
+    /**
+     * Set category
+     *
+     * @param FaqCategory $faqCategory
+     *
+     * @return FaqItem
+     */
+    public function setFaqCategory(FaqCategory $faqCategory = null)
+    {
+        $this->faqCategory = $faqCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get FaqCategory
+     *
+     * @return \Dywee\FaqBundle\Entity\FaqCategory
+     */
+    public function getFaqCategory()
+    {
+        return $this->faqCategory;
     }
 }

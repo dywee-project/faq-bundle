@@ -24,7 +24,7 @@ class AdminSidebarHandler
                 array(
                     'icon' => 'fa fa-list-alt',
                     'label' => 'faq.sidebar.dashboard',
-                    'route' => $this->router->generate('faq_homepage')
+                    'route' => $this->router->generate('faq_dashboard')
                 ),
             )
         );

@@ -3,10 +3,20 @@
 {% extends 'DyweeFaqBundle::admin.html.twig' %}
 
 {% block body %}
-    <h1>Nouveau regroupement de questions</h1>
-    <p>&nbsp;</p>
-    <div class="col-md-6">
-        {% include 'DyweeFaqBundle:FaqCategory:form.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h1 class="box-title">
+                        {{ 'faq.category.new'|trans }}
+                    </h1>
+                </div>
+                <div class="box-body">
+                    {% include 'DyweeFaqBundle:FaqCategory:form.html.twig' %}
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

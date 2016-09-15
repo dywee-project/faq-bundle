@@ -1,16 +1,19 @@
-{# Dywee\FaqBundle\views\FaqItem\add.html.twig #}
+{# Dywee\FaqBundle\views\FaqCategory\add.html.twig #}
 
 {% extends 'DyweeFaqBundle::admin.html.twig' %}
 
 {% block body %}
+
     <div class="row">
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h1 class="box-title">{{ 'faq.item.edit'|trans }}</h1>
+                    <h1 class="box-title">
+                        {{ 'faq.category.edit'|trans }}
+                    </h1>
                 </div>
                 <div class="box-body">
-                    {% include 'DyweeFaqBundle:FaqItem:form.html.twig' %}
+                    {% include 'DyweeFaqBundle:FaqCategory:form.html.twig' %}
                 </div>
             </div>
         </div>
