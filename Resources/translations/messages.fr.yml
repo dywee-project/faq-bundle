@@ -17,5 +17,8 @@ faq:
         isVisible: Visible sur le site
 
     sidebar:
-        label: FAQ:
+        label: FAQ
         dashboard: Gérer les FAQ
+
+    question: Question
+    state: Statut
